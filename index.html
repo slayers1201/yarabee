@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MALU MALU 🌸</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<canvas id="bgCanvas"></canvas>
+<div id="lightRays"></div>
+<div id="particleLayer"></div>
+<div id="emojiRain"></div>
+<div id="emojiBurst"></div>
+<div id="idleParticles"></div>
+<div class="progress-bar" id="progressBar"></div>
+
+<audio id="bgMusic" preload="auto">
+  <source src="music.mp3" type="audio/mpeg"/>
+</audio>
+
+<div class="music-bar" id="musicBar">
+  <div class="mb-eq" id="mbEq">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="mb-meta">
+    <span class="mb-song">MALU MALU</span>
+    <span class="mb-by">dia ft. INDAHKUS</span>
+  </div>
+  <button class="mb-play" id="btnPlay">
+    <svg id="svgPlay" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    <svg id="svgPause" viewBox="0 0 24 24" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  </button>
+  <div class="mb-right">
+    <span class="mb-time" id="mbTime">0:00</span>
+    <div class="mb-track" id="mbTrack">
+      <div class="mb-fill" id="mbFill"></div>
+    </div>
+  </div>
+</div>
+
+<div class="nav-dots" id="navDots"></div>
+
+<section class="scene s-intro" id="sc0" data-time="-1">
+  <div class="intro-rings">
+    <div class="ir ir1"></div><div class="ir ir2"></div>
+    <div class="ir ir3"></div><div class="ir ir4"></div><div class="ir ir5"></div>
+  </div>
+  <div class="orb-field">
+    <div class="of of1"></div><div class="of of2"></div>
+    <div class="of of3"></div><div class="of of4"></div>
+  </div>
+  <div class="intro-stage">
+    <p class="i-artist" id="iArtist">✦ dia ft. INDAHKUS ✦</p>
+    <div class="i-title-wrap" id="iTitleWrap">
+      <div class="i-row" id="iRow1">
+        <span class="il" style="--di:0">M</span><span class="il" style="--di:1">A</span><span class="il" style="--di:2">L</span><span class="il" style="--di:3">U</span>
+      </div>
+      <div class="i-row" id="iRow2">
+        <span class="il il2" style="--di:4">M</span><span class="il il2" style="--di:5">A</span><span class="il il2" style="--di:6">L</span><span class="il il2" style="--di:7">U</span>
+      </div>
+    </div>
+    <div class="orbit" id="orbit">
+      <div class="oi" style="--i:0">🌸</div><div class="oi" style="--i:1">💗</div>
+      <div class="oi" style="--i:2">✨</div><div class="oi" style="--i:3">💜</div>
+      <div class="oi" style="--i:4">🌷</div><div class="oi" style="--i:5">🥺</div>
+      <div class="oi" style="--i:6">💫</div><div class="oi" style="--i:7">🫶</div>
+    </div>
+    <div class="i-beat" id="iBeat">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span>
+    </div>
+    <div class="i-cd" id="iCd">
+      <div class="cd-track"><div class="cd-prog" id="cdProg"></div></div>
+      <p class="cd-label" id="cdLabel">🎵 intro...</p>
+    </div>
+    <p class="i-hint" id="iHint">tekan ▶ untuk mulai 🌸</p>
+  </div>
+</section>
+
+<section class="scene s-lyric" id="sc1" data-time="24">
+  <div class="sfx-layer">
+    <span class="sfx" style="--x:8%;--y:15%;--d:0s">👁️</span>
+    <span class="sfx" style="--x:85%;--y:25%;--d:1.3s">💭</span>
+    <span class="sfx" style="--x:50%;--y:80%;--d:2.1s">🌸</span>
+  </div>
+  <div class="scene-glow sg-purple"></div>
+  <div class="ly-wrap ly-center">
+    <div class="ly-block chorus-block">
+      <div class="lw-wrap"><p class="lw wave-in" data-t="27" data-e="👁️">Pandangku hanya padamu,</p><p class="lw wave-in" data-t="29" data-e="💗">hanya kamu</p></div>
+      <p class="lw slide-right" data-t="31" data-e="⏸️">Seakan dunia memberhentikan waktu</p>
+      <p class="lw zoom-in"    data-t="35" data-e="💭">1000 kata membanjiri pikiranku</p>
+      <p class="lw glitch-in pink bold" data-t="39" data-e="🥺">Tapi ku malu—malu...</p>
+      <p class="lw fade-up soft"  data-t="42" data-e="🤔">Mungkin di lain waktu?</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene s-lyric" id="sc2" data-time="62">
+  <div class="sfx-layer">
+    <span class="sfx" style="--x:15%;--y:20%;--d:.4s">🧠</span>
+    <span class="sfx" style="--x:80%;--y:70%;--d:1.8s">✨</span>
+  </div>
+  <div class="scene-glow sg-pink"></div>
+  <div class="ly-wrap ly-split">
+    <div class="ly-block">
+      <p class="lw slide-left"  data-t="64" data-e="🧠">Isi pikiranku kamu</p>
+      <p class="lw slide-left"  data-t="66" data-e="⏳">Jadi terlalu banyak buang waktu</p>
+      <p class="lw wave-in italic" data-t="68" data-e="✨">Dari atas sampai bawah, anggun</p>
+      <p class="lw fade-up en"  data-t="70" data-e="🫀">Baby know that I just wanna be with you, uh</p>
+    </div>
+    <div class="photo-card tilt3d">
+      <div class="pc-glow"></div>
+      <div class="pc-frame"><img src="photo1.jpg" alt=""/><div class="pc-ph"><span></span><p>photo1.jpg</p></div></div>
+      <div class="pc-tag">✦ hanya kamu ✦</div>
+      <div class="pc-sparkles"></div>
+    </div>
+  </div>
+</section>
+
+<section class="scene s-lyric" id="sc3" data-time="71">
+  <div class="sfx-layer">
+    <span class="sfx" style="--x:10%;--y:30%;--d:0s">☀️</span>
+    <span class="sfx" style="--x:65%;--y:20%;--d:.9s">🌙</span>
+    <span class="sfx" style="--x:88%;--y:60%;--d:1.7s">📱</span>
+  </div>
+  <div class="scene-glow sg-mix"></div>
+  <div class="ly-wrap ly-center">
+    <div class="ly-block pills-block">
+      <div class="pill pop-in"    data-t="72" data-e="☀️">☀️ Siang-siang kepikiran</div>
+      <div class="pill pop-in"    data-t="74" data-e="🌙">🌙 Malam-malam sendirian</div>
+      <div class="pill pop-in"    data-t="76" data-e="📱">📱 Scrolling TikTok feednya isi cinta-cintaan</div>
+      <div class="pill pop-in en" data-t="79" data-e="💍">Know that one day I will ask u to be mine 💍</div>
+    </div>
+  </div>
+</section>
+
+<section class="scene s-lyric" id="sc4" data-time="80">
+  <div class="sfx-layer">
+    <span class="sfx" style="--x:5%;--y:15%;--d:0s">💅</span>
+    <span class="sfx" style="--x:90%;--y:25%;--d:1.2s">💗</span>
+    <span class="sfx" style="--x:45%;--y:85%;--d:2.3s">⏰</span>
+  </div>
+  <div class="scene-glow sg-purple"></div>
+  <div class="ly-wrap ly-split ly-rev">
+    <div class="photo-card tilt3d">
+      <div class="pc-glow"></div>
+      <div class="pc-frame"><img src="photo2.jpg" alt=""/><div class="pc-ph"><span></span><p>photo2.jpg</p></div></div>
+      <div class="pc-tag">✦ please say it now ✦</div>
+      <div class="pc-sparkles"></div>
+    </div>
+    <div class="ly-block chorus-block her-block">
+      <p class="lw zoom-in big"          data-t="81" data-e="🙅">Boy, jangan malu malu</p>
+      <p class="lw zoom-in big"          data-t="83" data-e="🥰">Boy, kamu itu lucu</p>
+      <p class="lw glitch-in big en"     data-t="85" data-e="⏰">Boy, don't waste my time</p>
+      <p class="lw wave-in big pink bold" data-t="87" data-e="💗">so please say it now 💗</p>
+      <p class="lw slide-right"          data-t="90" data-e="🙋">Kamu mau apa, semua aku bisa</p>
+      <p class="lw fade-up en soft"      data-t="94" data-e="👀">Just look at my eyes, sure you wouldn't think twice</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene s-lyric" id="sc5" data-time="97">
+  <div class="sfx-layer">
+    <span class="sfx" style="--x:12%;--y:20%;--d:.2s">🌍</span>
+    <span class="sfx" style="--x:75%;--y:75%;--d:1.5s">💭</span>
+    <span class="sfx" style="--x:42%;--y:10%;--d:2.7s">🥺</span>
+  </div>
+  <div class="scene-glow sg-pink"></div>
+  <div class="ly-wrap ly-center">
+    <div class="ly-block chorus-block">
+      <div class="lw-wrap"><p class="lw wave-in"  data-t="98" data-e="👁️">Pandangku hanya padamu,</p><p class="lw wave-in" data-t="100" data-e="💗">hanya kamu</p></div>
+      <p class="lw slide-right" data-t="102" data-e="⏸️">Seakan dunia memberhentikan waktu</p>
+      <p class="lw zoom-in"     data-t="106" data-e="💭">1000 kata membanjiri pikiranku</p>
+      <p class="lw glitch-in pink bold" data-t="110" data-e="🥺">Tapi ku malu—malu...</p>
+      <p class="lw fade-up soft" data-t="113" data-e="🤷">Mungkin di lain waktu?</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene s-lyric" id="sc6" data-time="115">
+  <div class="sfx-layer">
+    <span class="sfx" style="--x:7%;--y:30%;--d:0s">👀</span>
+    <span class="sfx" style="--x:82%;--y:20%;--d:1.1s">🔥</span>
+    <span class="sfx" style="--x:55%;--y:80%;--d:2.4s">🤓</span>
+  </div>
+  <div class="scene-glow sg-mix"></div>
+  <div class="ly-wrap ly-split">
+    <div class="ly-block">
+      <p class="lw slide-left en"   data-t="116" data-e="👀">I see you lookin', got that little cute thing</p>
+      <p class="lw slide-left en"   data-t="119" data-e="🎮">Cuz in my heart, I'll let the games begin</p>
+      <p class="lw wave-in italic"  data-t="122" data-e="🔥">Lihat mata kamu, I'm feelin' the heat 🔥</p>
+      <p class="lw zoom-in en"      data-t="124" data-e="🤓">You're a nerd, but I can't defeat</p>
+    </div>
+    <div class="photo-card tilt3d">
+      <div class="pc-glow"></div>
+      <div class="pc-frame"><img src="photo3.jpg" alt=""/><div class="pc-ph"><span></span><p>photo3.jpg</p></div></div>
+      <div class="pc-tag">✦ feelin' the heat ✦</div>
+      <div class="pc-sparkles"></div>
+    </div>
+  </div>
+</section>
+
+<section class="scene s-lyric" id="sc7" data-time="126">
+  <div class="sfx-layer">
+    <span class="sfx" style="--x:18%;--y:25%;--d:0s">🤍</span>
+    <span class="sfx" style="--x:70%;--y:70%;--d:1s">🫶</span>
+    <span class="sfx" style="--x:38%;--y:15%;--d:2s">🌸</span>
+  </div>
+  <div class="scene-glow sg-purple"></div>
+  <div class="ly-wrap ly-center">
+    <div class="ly-block pills-block">
+      <div class="pill pop-in en"  data-t="127" data-e="🤍">Cuz I chose you first, baby 🤍</div>
+      <div class="pill pop-in en"  data-t="129" data-e="🫶">Gonna love you back, baby</div>
+      <div class="pill pop-in"     data-t="131" data-e="🫰">Asalkan bisa jaga hati 🫰</div>
+      <div class="pill pop-in zh"  data-t="133" data-e="🈶">Nǐ xiān shuō ài wǒ</div>
+      <div class="pill pop-in zh"  data-t="135" data-e="🌸">wǒ jiù kěndìng yǒngyuǎn ài nǐ 🌸</div>
+    </div>
+  </div>
+</section>
+
+<section class="scene s-lyric" id="sc8" data-time="136">
+  <div class="sfx-layer">
+    <span class="sfx" style="--x:6%;--y:20%;--d:0s">🫂</span>
+    <span class="sfx" style="--x:88%;--y:60%;--d:1.3s">😅</span>
+    <span class="sfx" style="--x:55%;--y:85%;--d:2.6s">🙈</span>
+  </div>
+  <div class="scene-glow sg-pink"></div>
+  <div class="ly-wrap ly-split ly-rev">
+    <div class="photo-card tilt3d">
+      <div class="pc-glow"></div>
+      <div class="pc-frame"><img src="photo4.jpg" alt=""/><div class="pc-ph"><span></span><p>photo4.jpg</p></div></div>
+      <div class="pc-tag">✦ introvert level 99 ✦</div>
+      <div class="pc-sparkles"></div>
+    </div>
+    <div class="ly-block">
+      <p class="lw slide-right en"   data-t="137" data-e="🫂">I ain't trynna lose you baby <em>(wo ai ni)</em></p>
+      <p class="lw slide-right en"   data-t="139" data-e="😳">Walau aku malu-malu lately <em>(ooh)</em></p>
+      <p class="lw wave-in"          data-t="141" data-e="💪">Soal percintaan ku paling sabi <em>(tapi)</em></p>
+      <p class="lw zoom-in"          data-t="143" data-e="🥹">Aku harap kamu cukup paham 🥹</p>
+      <p class="lw glitch-in pink"   data-t="145" data-e="😅">Ku introvert level 99 😅</p>
+      <p class="lw wave-in italic"   data-t="147" data-e="💪">Tapi akan ku beranikan...</p>
+      <p class="lw fade-up soft"     data-t="149" data-e="🙈">Tapi jangan pakai tanya kapan 🙈</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene s-lyric" id="sc9" data-time="151">
+  <div class="sfx-layer">
+    <span class="sfx" style="--x:10%;--y:10%;--d:.2s">🌟</span>
+    <span class="sfx" style="--x:80%;--y:30%;--d:1.5s">💫</span>
+    <span class="sfx" style="--x:48%;--y:80%;--d:2.8s">🌸</span>
+  </div>
+  <div class="scene-glow sg-mix"></div>
+  <div class="ly-wrap ly-split">
+    <div class="ly-block chorus-block">
+      <div class="lw-wrap"><p class="lw wave-in"  data-t="152" data-e="👁️">Pandangku hanya padamu,</p><p class="lw wave-in" data-t="154" data-e="💗">hanya kamu</p></div>
+      <p class="lw slide-left"   data-t="156" data-e="⏸️">Seakan dunia memberhentikan waktu</p>
+      <p class="lw zoom-in"      data-t="160" data-e="💭">1000 kata membanjiri pikiranku</p>
+      <p class="lw glitch-in pink bold" data-t="164" data-e="🥺">Tapi ku malu—malu...</p>
+      <p class="lw fade-up soft" data-t="167" data-e="🌸">Mungkin di lain waktu?</p>
+    </div>
+    <div class="photo-card tilt3d">
+      <div class="pc-glow"></div>
+      <div class="pc-frame"><img src="photo5.jpg" alt=""/><div class="pc-ph"><span></span><p>photo5.jpg</p></div></div>
+      <div class="pc-tag">✦ pandangku padamu ✦</div>
+      <div class="pc-sparkles"></div>
+    </div>
+  </div>
+</section>
+
+<section class="scene s-outro" id="sc10" data-time="172">
+  <div class="outro-rings">
+    <div class="or or1"></div><div class="or or2"></div>
+    <div class="or or3"></div><div class="or or4"></div>
+  </div>
+  <div class="outro-core">
+    <p class="o-tag">✦ dia ft. INDAHKUS ✦</p>
+    <h2 class="o-title">Hanya<br/><span>Kamu</span></h2>
+    <p class="o-quote">"Pandangku hanya padamu 🌸"</p>
+    <div class="o-hearts">
+      <span style="--od:0s">💗</span><span style="--od:.15s">🌸</span>
+      <span style="--od:.3s">💜</span><span style="--od:.45s">🌷</span>
+      <span style="--od:.6s">✨</span><span style="--od:.75s">🫶</span>
+      <span style="--od:.9s">💫</span><span style="--od:1.05s">💝</span>
+    </div>
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
